@@ -8,5 +8,3 @@ export const AJAX = async function (url) {
     throw err;
   }
 };
-
-console.log(testing);
