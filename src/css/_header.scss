@@ -1,0 +1,74 @@
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 10vh;
+
+  &__logo {
+    display: flex;
+    align-items: center;
+    font-size: 1.75rem;
+    gap: 2rem;
+    font-weight: 500;
+
+    & img {
+      width: 120px;
+      height: 100%;
+    }
+
+    & span {
+      font-weight: 400;
+      font-size: 2rem;
+    }
+  }
+
+  & .search__field {
+    width: 600px;
+    height: 50px;
+    padding: 2rem;
+    border-radius: 17px;
+    background-color: #8a919e;
+    border: none;
+    transition: all 0.2s;
+
+    &::placeholder {
+      color: rgb(75, 75, 75);
+    }
+
+    &:focus {
+      outline: none;
+    }
+
+    &:focus-within {
+      transform: translateY(-1px);
+    }
+  }
+}
+
+.nav {
+  &__list {
+    list-style: none;
+    display: flex;
+    gap: 6rem;
+  }
+
+  &__btn {
+    background-color: transparent;
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    font-weight: 400;
+    transition: 0.1s all;
+
+    &:hover {
+      cursor: pointer;
+      transform: translateY(-1px);
+      color: $color-third-text;
+    }
+  }
+}
+
+.main {
+  padding-top: 2rem;
+  height: 85vh;
+}

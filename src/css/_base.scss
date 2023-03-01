@@ -1,0 +1,64 @@
+$color-primary: #14223d; // Background color
+
+$color-main-text: rgb(255, 255, 255); // Normal text
+$color-second-text: #b2b8c8; // Darker text
+$color-third-text: #99415f; // Red text
+
+$bp-large: 78.15em; // 1250px
+$bp-medium: 61.25em; // 980px
+$bp-small: 37.5em; // 600px
+$bp-smallest: 31.25em; // 500px
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+html {
+  box-sizing: border-box;
+  font-size: 62.5%;
+
+  @media only screen and (max-width: $bp-medium) {
+    font-size: 50%;
+  }
+}
+
+body {
+  font-weight: 400;
+  line-height: 1.6;
+  color: $color-main-text;
+  background-color: $color-primary;
+  min-height: 100vh;
+}
+
+body::before {
+  content: '';
+  background-image: url(../img/imola-circuit.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  left: 0px;
+  bottom: 0px;
+  z-index: -1;
+  opacity: 0.02;
+  background-size: 130%;
+}
+
+button,
+input,
+body {
+  font-family: 'Inter', sans-serif;
+}
+
+.container {
+  padding: 2rem 8rem;
+  overflow: hidden;
+}

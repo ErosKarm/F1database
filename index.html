@@ -5,10 +5,66 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@200;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
     <link rel="stylesheet" href="src/css/main.scss" />
     <script type="module" src="src/js/controller.js"></script>
 
     <title>Formula 1 | Database</title>
   </head>
-  <body></body>
+  <body>
+    <div class="container">
+      <header class="header">
+        <div class="header__logo">
+          <img src="src/img/main-logo.png" alt="F1 logo" />
+          <span>F1 DATABASE</span>
+          <form class="search">
+            <input
+              type="text"
+              class="search__field"
+              placeholder="Search for drivers, teams, circtuits, schedule, countries"
+            />
+          </form>
+        </div>
+
+        <nav class="nav">
+          <ul class="nav__list">
+            <li class="nav__item">
+              <button class="nav__btn">
+                <span>Standings</span>
+              </button>
+            </li>
+            <li class="nav__item">
+              <button class="nav__btn">
+                <span>Teams</span>
+              </button>
+            </li>
+            <li class="nav__item">
+              <button class="nav__btn">
+                <span>Schedule</span>
+              </button>
+            </li>
+            <li class="nav__item">
+              <button class="nav__btn">
+                <span>Bla bla</span>
+              </button>
+            </li>
+          </ul>
+        </nav>
+      </header>
+
+      <div class="main">
+        <div class="main-first">
+          <h2>ROUND 1 12 - 24 JUL</h2>
+          <span>FORMULA 1 LENOVO GRAND PRIZ DE FRANCE 2022</span>
+        </div>
+        <div class="main-second"></div>
+      </div>
+    </div>
+  </body>
 </html>
