@@ -1,0 +1,31 @@
+.box__track-overview {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+
+  background-image: url('../img/bahrain.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-size: 50%;
+  background-position: 90% 50%;
+  & span {
+    font-size: 1.2rem;
+    color: #a1a1a1;
+  }
+
+  & .box__track--stats {
+    font-size: 3rem;
+    margin-top: -1rem;
+    font-weight: 600;
+  }
+}
+
+.box_flex {
+  display: flex;
+  align-items: center;
+
+  & span {
+    font-size: 1.25rem;
+    margin-left: 0.5rem;
+  }
+}

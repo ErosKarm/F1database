@@ -1,0 +1,31 @@
+@import 'schedule';
+@import 'past-winners';
+@import 'track-overview';
+
+.main {
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+}
+
+.main-first {
+  & h2 {
+    font-size: 1.75rem;
+    font-weight: 100;
+  }
+
+  & span {
+    font-size: 3.5rem;
+  }
+}
+
+.box {
+  background-color: $color-box-transparent;
+  padding: 2rem;
+  border-radius: 15px;
+  margin-bottom: 2rem;
+
+  &__title {
+    font-size: 1.75rem;
+    color: $color-third-text;
+  }
+}

@@ -1,0 +1,25 @@
+.box-nogrid {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  background-image: url(../img/max-verstappen.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  gap: 2rem;
+  background-position: bottom 0px right -65px;
+}
+
+.past-winners-box-1 {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+
+  & span:not(:last-child) {
+    font-size: 1.25rem;
+  }
+
+  & span:last-child {
+    color: #aaaaaa;
+    font-size: 0.95rem;
+  }
+}
