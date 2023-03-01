@@ -1,0 +1,37 @@
+.main {
+  display: grid;
+  grid-template-columns: 2.75fr 1fr;
+}
+
+.main-first {
+  & h2 {
+    font-size: 1.75rem;
+    font-weight: 100;
+  }
+
+  & span {
+    font-size: 3.5rem;
+  }
+}
+
+.box {
+  background-color: $color-box-transparent;
+  padding: 2rem;
+  border-radius: 15px;
+  display: grid;
+  align-items: center;
+  justify-content: space-between;
+  grid-template-columns: 1fr 1fr;
+
+  & span {
+    color: #bbbbbb;
+    font-size: 1.25rem;
+    font-weight: 500;
+    margin-right: 2rem;
+  }
+}
+
+.box--schedule {
+  font-size: 1.75rem;
+  color: $color-third-text;
+}
