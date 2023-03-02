@@ -1,12 +1,31 @@
-export const AJAX = async function (url) {
-  try {
-    const res = await fetch(url);
-    const data = await res.json();
+import moment from 'moment';
 
-    console.log(data);
+export const findRace = function (races) {
+  const curDate = moment([
+    new Date().getFullYear(),
+    new Date().getMonth(),
+    new Date().getDate(),
+  ]);
 
-    if (!res.ok) throw new Error(`${data.message}`);
-  } catch (err) {
-    throw err;
-  }
+  let index = 0;
+  let closest = 9999;
+
+  const findDifference = races.forEach((race, i) => {
+    let getDateTime = new Date(race.date);
+
+    let raceDate = moment([
+      getDateTime.getFullYear(),
+      getDateTime.getMonth(),
+      getDateTime.getDate(),
+    ]);
+
+    if (raceDate.diff(curDate, 'days') < closest) {
+      console.log('its smaller');
+      closest = raceDate.diff(curDate, 'days');
+      index = i;
+    }
+
+    // console.log(race.date, i);
+  });
+  return index;
 };
