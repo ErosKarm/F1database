@@ -1,6 +1,7 @@
 import { AJAX } from './helper';
 import * as model from './model';
 import raceScheduleView from './views/raceScheduleView';
+import pastWinnersView from './views/pastWinnersView';
 
 const controlRaceSchedule = async function () {
   // 1) Render spinner
@@ -13,6 +14,17 @@ const controlRaceSchedule = async function () {
   raceScheduleView.render(model.state.race);
 };
 
-controlRaceSchedule();
+const controlPastWinners = async function () {
+  // 1) Render spinner
+  pastWinnersView.renderSpinner();
 
-console.log(new Date('2011-06-29 16:52:48.000Z'));
+  // 2) Load search results
+
+  await model.loadWinners('http://ergast.com/api/f1/2023.json');
+
+  // 3) Render Race Schedule
+  // raceScheduleView.render(model.state.P);
+};
+
+controlRaceSchedule();
+controlPastWinners();

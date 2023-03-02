@@ -1,5 +1,5 @@
 import moment from 'moment';
-import * as country from 'countries-and-timezones';
+import * as countryNames from 'countries-and-timezones';
 
 export const findRace = function (races) {
   const curDate = moment([
@@ -21,7 +21,6 @@ export const findRace = function (races) {
     ]);
 
     if (raceDate.diff(curDate, 'days') < closest) {
-      console.log('its smaller');
       closest = raceDate.diff(curDate, 'days');
       index = i;
     }
@@ -39,20 +38,25 @@ const convertTimeZone = function (date, timezone) {
   );
 };
 
-export const getLocalTime = function (date, time) {
-  const utcTime = new Date(`${date} ${time}`);
-  console.log(utcTime);
-  const value = convertTimeZone(utcTime, 'Asia/Bahrain');
-  console.log(value.toLocaleTimeString());
-};
+export const getLocalDate = function (date, time, country) {
+  // Get country timezone
+  const raceCountry = Object.values(countryNames.getAllCountries());
+  let curTimeZone = raceCountry.find(
+    countryID => countryID.name === country
+  ).timezones;
 
-export const getLocalDate = function (date, time) {
-  console.log(new Date(date));
+  // Convert Z time to UTC time
+  const utcTime = new Date(`${date} ${time}`);
+  const value = convertTimeZone(utcTime, 'Asia/Qatar');
+  const date2 = new Date(value);
+  const time2 = date2.toLocaleTimeString(undefined, { hour12: false });
+
+  return time2;
 };
 
 // Get shortened version MONTH
 export const getMonth = function (date) {
-  return new Date(date).toLocaleString([], { month: 'short' });
+  return new Date(date).toLocaleString([], { month: 'short' }).toUpperCase();
 };
 
 export const getDay = function (date) {

@@ -21,22 +21,22 @@ class raceScheduleView extends View {
       <span class="box__date">${this._data.practiceTwo.date} ${this._data.month}</span>
       <span class="box__practice">Practice 2</span>
     </div>
-    <span>08:00 - 09:00</span>
+    <span>${this._data.practiceTwo.time}</span>
     <div>
       <span class="box__date">${this._data.practiceThree.date} ${this._data.month}</span>
       <span class="box__practice">Practice 3</span>
     </div>
-    <span>08:00 - 09:00</span>
+    <span>${this._data.practiceThree.time}</span>
     <div>
       <span class="box__date">${this._data.qualifying.date} ${this._data.month}</span>
       <span class="box__practice">Qualifying</span>
     </div>
-    <span>08:00 - 09:00</span>
+    <span>${this._data.qualifying.time}</span>
     <div>
       <span class="box__date">${this._data.raceDate.date} ${this._data.month}</span>
       <span class="box__practice">Race</span>
     </div>
-    <span>08:00 - 09:00</span>
+    <span>${this._data.raceDate.time}</span>
     
     `;
   }

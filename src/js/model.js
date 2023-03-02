@@ -3,6 +3,8 @@ import { getLocalTime, getLocalDate, getMonth, getDay } from './helper';
 
 export const state = {
   race: {},
+  raceIndex: 0,
+  winners: {},
 };
 
 const createRaceObject = function (data) {
@@ -18,23 +20,39 @@ const createRaceObject = function (data) {
       country: data.Circuit.Location.country,
     },
     raceDate: {
-      time: data.time,
+      time: getLocalDate(data.date, data.time, data.Circuit.Location.country),
       date: getDay(data.date),
     },
     qualifying: {
-      time: getLocalTime(data.Qualifying.date, data.Qualifying.time),
+      time: getLocalDate(
+        data.Qualifying.date,
+        data.Qualifying.time,
+        data.Circuit.Location.country
+      ),
       date: getDay(data.Qualifying.date),
     },
     practiceThree: {
-      time: data.ThirdPractice.time,
+      time: getLocalDate(
+        data.ThirdPractice.date,
+        data.ThirdPractice.time,
+        data.Circuit.Location.country
+      ),
       date: getDay(data.ThirdPractice.date),
     },
     practiceTwo: {
-      time: data.SecondPractice.time,
+      time: getLocalDate(
+        data.SecondPractice.date,
+        data.SecondPractice.time,
+        data.Circuit.Location.country
+      ),
       date: getDay(data.SecondPractice.date),
     },
     practiceOne: {
-      time: data.FirstPractice.time,
+      time: getLocalDate(
+        data.FirstPractice.date,
+        data.FirstPractice.time,
+        data.Circuit.Location.country
+      ),
       date: getDay(data.FirstPractice.date),
     },
   };
@@ -46,9 +64,8 @@ export const loadRace = async function (url) {
     const data = await res.json();
 
     const races = Object.values(data)[0].RaceTable.Races;
-    const closest = findRace(races);
-    console.log(races);
 
+    const closest = findRace(races);
     state.race = createRaceObject(races[closest]);
 
     if (!res.ok) throw new Error(`${data.message}`);
@@ -57,4 +74,28 @@ export const loadRace = async function (url) {
   }
 };
 
-console.log(state);
+export const loadWinners = async function (raceURL) {
+  try {
+    // Get race INDEX
+    const res = await fetch(raceURL);
+    const data = await res.json();
+    const races = Object.values(data)[0].RaceTable.Races;
+    const closest = findRace(races);
+
+    // Get last driver
+
+    const curDate = new Date().getFullYear();
+    console.log(curDate);
+
+    const res2 = await fetch(
+      `https://ergast.com/api/f1/2022/results.json?limit=1000.`
+    );
+    const data2 = await res2.json();
+
+    console.log(data2);
+
+    if (!res.ok) throw new Error(`${data.message}`);
+  } catch (err) {
+    throw err;
+  }
+};
