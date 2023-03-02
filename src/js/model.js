@@ -1,4 +1,5 @@
 import { findRace } from './helper';
+import { getLocalTime, getLocalDate, getMonth, getDay } from './helper';
 
 export const state = {
   race: {},
@@ -9,6 +10,7 @@ const createRaceObject = function (data) {
   return {
     name: data.raceName,
     round: data.round,
+    month: getMonth(data.date),
     location: {
       latitude: data.Circuit.Location.lat,
       long: data.Circuit.Location.long,
@@ -17,34 +19,35 @@ const createRaceObject = function (data) {
     },
     raceDate: {
       time: data.time,
-      data: data.date,
+      date: getDay(data.date),
     },
     qualifying: {
-      time: data.Qualifying.time,
-      data: data.Qualifying.date,
+      time: getLocalTime(data.Qualifying.date, data.Qualifying.time),
+      date: getDay(data.Qualifying.date),
     },
     practiceThree: {
       time: data.ThirdPractice.time,
-      data: data.ThirdPractice.date,
+      date: getDay(data.ThirdPractice.date),
     },
     practiceTwo: {
       time: data.SecondPractice.time,
-      data: data.SecondPractice.date,
+      date: getDay(data.SecondPractice.date),
     },
     practiceOne: {
       time: data.FirstPractice.time,
-      data: data.FirstPractice.date,
+      date: getDay(data.FirstPractice.date),
     },
   };
 };
 
-const loadRace = async function (url) {
+export const loadRace = async function (url) {
   try {
     const res = await fetch(url);
     const data = await res.json();
 
     const races = Object.values(data)[0].RaceTable.Races;
     const closest = findRace(races);
+    console.log(races);
 
     state.race = createRaceObject(races[closest]);
 
@@ -53,7 +56,5 @@ const loadRace = async function (url) {
     throw err;
   }
 };
-
-loadRace('http://ergast.com/api/f1/2023.json');
 
 console.log(state);
