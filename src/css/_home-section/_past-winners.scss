@@ -1,11 +1,11 @@
 .box-nogrid {
   display: flex;
+  position: relative;
   flex-direction: column;
   align-items: flex-start;
-  background-image: url(../img/max-verstappen.png);
-  background-size: contain;
-  background-repeat: no-repeat;
+
   gap: 2rem;
+
   background-position: bottom 0px right -65px;
 }
 
@@ -15,11 +15,16 @@
   gap: 2rem;
 
   & span:not(:last-child) {
-    font-size: 1.25rem;
+    font-size: 1.75rem;
   }
 
   & span:last-child {
     color: #aaaaaa;
-    font-size: 0.95rem;
+    font-size: 1.25rem;
   }
+}
+
+.car-image {
+  position: absolute;
+  bottom: 0px;
 }

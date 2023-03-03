@@ -20,10 +20,9 @@ const controlPastWinners = async function () {
 
   // 2) Load search results
 
-  await model.loadWinners('http://ergast.com/api/f1/2023.json');
-
+  await model.loadWinners();
   // 3) Render Race Schedule
-  // raceScheduleView.render(model.state.P);
+  pastWinnersView.render(model.state.winners);
 };
 
 controlRaceSchedule();

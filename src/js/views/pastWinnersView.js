@@ -4,24 +4,18 @@ class pastWinnersView extends View {
   _parentElement = document.querySelector('.box-nogrid');
   _errorMessage = 'Failed to fetch';
 
+  _getYear() {
+    return new Date().getFullYear();
+  }
+
   _generateMarkup() {
     return `
     <h2 class="box__title">PAST WINNERS</h2>
 
             <div class="past-winners-box-1">
-              <span>2021</span>
-              <span>Max Verstappen</span>
-              <span>RED BULL</span>
-            </div>
-            <div class="past-winners-box-1">
-              <span>2021</span>
-              <span>Max Verstappen</span>
-              <span>RED BULL</span>
-            </div>
-            <div class="past-winners-box-1">
-              <span>2021</span>
-              <span>Max Verstappen</span>
-              <span>RED BULL</span>
+              <span>${this._getYear() - 1}</span>
+              <span>${this._data.firstName} ${this._data.lastName}</span>
+              <span>${this._data.car.toUpperCase()}</span>
             </div>
       `;
   }

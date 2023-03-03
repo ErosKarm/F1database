@@ -1,14 +1,13 @@
 import { findRace } from './helper';
 import { getLocalTime, getLocalDate, getMonth, getDay } from './helper';
+import { curYear } from './config';
 
 export const state = {
   race: {},
-  raceIndex: 0,
   winners: {},
 };
 
 const createRaceObject = function (data) {
-  console.log(data);
   return {
     name: data.raceName,
     round: data.round,
@@ -66,6 +65,8 @@ export const loadRace = async function (url) {
     const races = Object.values(data)[0].RaceTable.Races;
 
     const closest = findRace(races);
+
+    state.raceIndex = closest + 1;
     state.race = createRaceObject(races[closest]);
 
     if (!res.ok) throw new Error(`${data.message}`);
@@ -74,25 +75,32 @@ export const loadRace = async function (url) {
   }
 };
 
-export const loadWinners = async function (raceURL) {
+const createLastWinnerObject = function (data) {
+  console.log(data);
+
+  return {
+    car: data.Constructor.name,
+    firstName: data.Driver.givenName,
+    lastName: data.Driver.familyName,
+  };
+};
+
+export const loadWinners = async function () {
   try {
-    // Get race INDEX
-    const res = await fetch(raceURL);
+    // Get current year
+    const curYear = new Date().getFullYear();
+    state.winners.year = curYear - 1;
+
+    // Get last year winner
+    const res = await fetch(
+      `https://ergast.com/api/f1/${curYear - 1}/results/1.json`
+    );
     const data = await res.json();
     const races = Object.values(data)[0].RaceTable.Races;
-    const closest = findRace(races);
+    const raceIndex = races.map(e => e.raceName).indexOf(state.race.name);
+    console.log(raceIndex);
 
-    // Get last driver
-
-    const curDate = new Date().getFullYear();
-    console.log(curDate);
-
-    const res2 = await fetch(
-      `https://ergast.com/api/f1/2022/results.json?limit=1000.`
-    );
-    const data2 = await res2.json();
-
-    console.log(data2);
+    state.winners = createLastWinnerObject(races[0].Results[0]);
 
     if (!res.ok) throw new Error(`${data.message}`);
   } catch (err) {
